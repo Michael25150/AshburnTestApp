@@ -1,4 +1,4 @@
-package com.example.ashburntestapp.ui.theme
+package com.example.ashburntestapp.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

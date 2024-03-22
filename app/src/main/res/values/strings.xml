@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AshburnTestApp</string>
+    <string name="text_field_placeholder">Enter your text</string>
+    <string name="save">Save</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="error_message">Some error</string>
 </resources>
