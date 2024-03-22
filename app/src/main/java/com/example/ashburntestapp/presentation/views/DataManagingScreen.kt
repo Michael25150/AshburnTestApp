@@ -20,11 +20,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -44,14 +42,8 @@ fun DataManagingScreen(
     manageDataViewModel: SendDataViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
-    var inputTextState by remember { mutableStateOf("") }
+    val inputTextState = remember { mutableStateOf("") }
     val dataState by manageDataViewModel.state
-
-    LaunchedEffect(key1 = dataState.isError) {
-        if (dataState.isError) {
-            Toast.makeText(context, R.string.error_message, Toast.LENGTH_SHORT).show()
-        }
-    }
 
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
@@ -60,8 +52,12 @@ fun DataManagingScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextField(
-                value = inputTextState,
-                onValueChange = { inputTextState = it },
+                value = inputTextState.value,
+                onValueChange = {
+                    if (it.length <= 25) {
+                        inputTextState.value = it
+                    }
+                },
                 placeholder = { Text(stringResource(id = R.string.text_field_placeholder)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 modifier = Modifier
@@ -75,7 +71,7 @@ fun DataManagingScreen(
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 Button(onClick = {
-                    manageDataViewModel.saveData(inputTextState)
+                    manageDataViewModel.saveData(inputTextState.value)
                 }) {
                     Text(stringResource(id = R.string.save))
                 }
@@ -117,6 +113,9 @@ fun DataManagingScreen(
                 }
             }
         }
+    }
+    if (dataState.isError) {
+        Toast.makeText(context, R.string.error_message, Toast.LENGTH_SHORT).show()
     }
 }
 

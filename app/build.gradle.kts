@@ -78,7 +78,7 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     // Compose dependencies
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
-    implementation("androidx.navigation:navigation-compose:2.8.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("com.google.accompanist:accompanist-flowlayout:0.17.0")
 }
