@@ -54,9 +54,7 @@ fun DataManagingScreen(
             TextField(
                 value = inputTextState.value,
                 onValueChange = {
-                    if (it.length <= 25) {
-                        inputTextState.value = it
-                    }
+                    inputTextState.value = it
                 },
                 placeholder = { Text(stringResource(id = R.string.text_field_placeholder)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
